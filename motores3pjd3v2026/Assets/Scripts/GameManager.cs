@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        
         if (Instancia == null)
         {
             Instancia = this;
@@ -48,25 +49,19 @@ public class GameManager : MonoBehaviour
 
     public void CarregarCena(string nomeCena)
     {
-        if (nomeCena == "Jogo")
-        {
-            SceneManager.LoadScene("Jogo");
-            SceneManager.LoadScene("GUI", LoadSceneMode.Additive);
+        SceneManager.LoadScene(nomeCena);
 
-            MudarEstado(EstadoJogo.Gameplay);
+        if (nomeCena == "Splash")
+        {
+            MudarEstado(EstadoJogo.Iniciando);
         }
-        else
+        else if (nomeCena == "MenuPrincipal")
         {
-            SceneManager.LoadScene(nomeCena);
-
-            if (nomeCena == "Splash")
-            {
-                MudarEstado(EstadoJogo.Iniciando);
-            }
-            else if (nomeCena == "MenuPrincipal")
-            {
-                MudarEstado(EstadoJogo.MenuPrincipal);
-            }
+            MudarEstado(EstadoJogo.MenuPrincipal);
+        }
+        else if (nomeCena == "Jogo")
+        {
+            MudarEstado(EstadoJogo.Gameplay);
         }
 
         AlocarInput();
@@ -75,7 +70,6 @@ public class GameManager : MonoBehaviour
     public void AlocarInput()
     {
         entradaJogador = FindFirstObjectByType<PlayerInput>();
-
         if (entradaJogador != null)
         {
             Debug.Log("Player Input encontrado!");
