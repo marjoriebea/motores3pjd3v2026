@@ -1,5 +1,5 @@
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class CoinUI : MonoBehaviour
 {
@@ -13,7 +13,6 @@ public class CoinUI : MonoBehaviour
     private void OnDisable()
     {
         PlayerObserverManager.OnCoinCountChanged -= UpdateCoins;
-
     }
 
     private void UpdateCoins(int amount)
